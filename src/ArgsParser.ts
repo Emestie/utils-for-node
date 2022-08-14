@@ -1,7 +1,9 @@
 export class ArgsParser {
+    private argsArray: string[];
     private argsObject: Record<string | number, any>;
 
-    constructor(private argsArray: string[]) {
+    constructor(argsArray?: string[]) {
+        this.argsArray = argsArray || process.argv.slice(2);
         this.argsObject = this.createArgsObject();
     }
 

@@ -1,6 +1,6 @@
 {
     "name": "utils-for-node",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Utils for Node.js scripts by mst",
     "main": "dist/index.js",
     "scripts": {

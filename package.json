@@ -2,6 +2,7 @@
     "name": "utils-for-node",
     "version": "0.1.0",
     "description": "Utils for Node.js scripts by mst",
+    "type": "module",
     "main": "dist/index.js",
     "scripts": {
         "build": "node ./scripts/before-build.cjs && tsc",

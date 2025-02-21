@@ -1,12 +1,12 @@
 {
     "name": "utils-for-node",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Utils for Node.js scripts by mst",
     "main": "dist/index.js",
     "scripts": {
         "build": "node ./scripts/before-build.cjs && tsc",
         "test": "jest || exit 0",
-        "prepublish": "npm run build"
+        "prepublishOnly": "npm run build"
     },
     "keywords": [
         "node",

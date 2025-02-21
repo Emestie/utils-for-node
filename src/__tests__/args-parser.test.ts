@@ -102,4 +102,31 @@ describe("ArgsParser", () => {
         expect(parser.getNumber("b", "beta", 29)).toBe(29);
         expect(parser.getBoolean("c", "centrum")).toBe(false);
     });
+
+    it("two combined boolean args", () => {
+        const parser = new ArgsParser(["-ab"]);
+
+        expect(Object.keys(parser.getArgsObject()).length).toBe(2);
+        expect(parser.getBoolean("a")).toBe(true);
+        expect(parser.getBoolean("b")).toBe(true);
+        expect(parser.getBoolean("c")).toBe(false);
+    });
+
+    it("two combined number args", () => {
+        const parser = new ArgsParser(["-ab", "22"]);
+
+        expect(Object.keys(parser.getArgsObject()).length).toBe(2);
+        expect(parser.getNumber("a")).toBe(22);
+        expect(parser.getNumber("b")).toBe(22);
+    });
+
+    it("various combined boolean args", () => {
+        const parser = new ArgsParser(["-ab", '--fn', '-c']);
+
+        expect(Object.keys(parser.getArgsObject()).length).toBe(4);
+        expect(parser.getBoolean("a")).toBe(true);
+        expect(parser.getBoolean("b")).toBe(true);
+        expect(parser.getBoolean("fn")).toBe(true);
+        expect(parser.getBoolean("c")).toBe(true);
+    });
 });

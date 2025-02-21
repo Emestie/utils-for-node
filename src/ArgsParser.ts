@@ -19,8 +19,14 @@ export class ArgsParser {
                 return;
             }
 
+            let isOneDash = false;
+
             const key =
-                arg.indexOf("--") === 0 ? arg.substring(2) : arg.indexOf("-") === 0 ? arg.substring(1) : unnamedIndex;
+                arg.indexOf("--") === 0
+                    ? arg.substring(2)
+                    : (isOneDash = true && arg.indexOf("-") === 0)
+                    ? arg.substring(1)
+                    : unnamedIndex;
 
             if (key === unnamedIndex) {
                 const value = arg;
@@ -32,12 +38,19 @@ export class ArgsParser {
             skip = true;
 
             let value: any = args[index + 1];
+
             if (value === undefined || value.indexOf("-") === 0) {
                 value = true;
                 skip = false;
             }
-            object[key] = value;
-            return;
+
+            if (isOneDash && key.toString().length > 1) {
+                key.toString()
+                    .split("")
+                    .forEach((k) => {
+                        object[k] = value;
+                    });
+            } else object[key] = value;
         });
 
         return object;
